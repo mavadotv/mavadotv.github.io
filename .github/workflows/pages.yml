@@ -25,8 +25,16 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/configure-pages@v5
+      # Publica só o site: o editor local e os atalhos ficam de fora
+      - name: Montar a pasta do site
+        run: |
+          mkdir _site
+          rsync -a ./ _site/ \
+            --exclude '.git' --exclude '.github' --exclude '.claude' --exclude '_site' \
+            --exclude 'editor' --exclude 'editar-site.*' --exclude 'README.md' \
+            --exclude 'netlify.toml' --exclude 'vercel.json' --exclude '.gitignore'
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: .
+          path: _site
       - id: deployment
         uses: actions/deploy-pages@v4

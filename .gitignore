@@ -4,3 +4,5 @@ Thumbs.db
 .netlify
 node_modules
 .claude/
+editor/.backups/
+*.tmp

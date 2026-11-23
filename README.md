@@ -7,12 +7,16 @@ HTML, CSS e JavaScript puros: **sem build e sem dependências**. Funciona em Git
 ## Estrutura
 
 ```
+editar-site.cmd       → abre o editor visual (duplo clique, Windows)
+editar-site.sh        → o mesmo para macOS / Linux
+editor/               → editor visual local (não vai para o site publicado)
 index.html            → casca do site (header, footer, modais)
 404.html              → redireciona links antigos (/melee, /atlas, /buildsd4…) para as rotas novas
 assets/
   css/style.css       → design system (cores da live, cards, responsivo)
-  js/data.js          → TODO o conteúdo do site (builds, atlas, ferramentas, vídeos…)
+  js/data.js          → TODO o conteúdo do site (gerado pelo editor; é JSON)
   js/app.js           → rotas, páginas, busca, player, status da live
+  img/uploads/        → imagens enviadas pelo editor
   img/brand/          → logo, avatar, banner, favicon e imagem de compartilhamento
   img/twitch/         → painéis da live (Seja Sub, Doar, Regras, parceiros…)
   img/games/          → logos dos jogos
@@ -22,25 +26,37 @@ vercel.json           → config Vercel
 .github/workflows/    → deploy automático no GitHub Pages
 ```
 
-## Editando o conteúdo
+## Editor visual (para quem não programa)
 
-Tudo fica em **`assets/js/data.js`**. Exemplos:
+Dá para mudar **textos, imagens, cores, jogos, seções, builds, vídeos e links** sem mexer em código, e depois publicar.
 
-**Nova build de PoE 1** (dentro de `poe1.builds`):
+**Precisa:** [Node.js](https://nodejs.org) (versão LTS) instalado. Para publicar, o projeto precisa ter sido clonado com o Git e você precisa ter acesso ao repositório no GitHub.
 
-```js
-{ cat: "melee", skill: "Nome da Skill", asc: "Ascendência", by: "Criador",
-  byUrl: "https://www.youtube.com/@canal", video: "ID_DO_VIDEO", pob: "https://pobb.in/xxxx" },
-```
+1. Dê **dois cliques em `editar-site.cmd`**. O editor abre no navegador em `http://localhost:8080/edit`. Deixe a janela preta aberta enquanto edita.
+2. No menu da esquerda, escolha o que editar. A prévia do lado direito mostra o resultado na hora (no celular, toque em **Prévia**).
+3. **Imagens:** clique no quadrado da imagem ou arraste um arquivo. Ela é redimensionada e convertida para WebP automaticamente.
+4. **Salvar** (`Ctrl+S`) grava no computador. **Desfazer** (`Ctrl+Z`) volta a última mudança. Um backup é guardado a cada salvamento em `editor/.backups/`.
+5. **Publicar** envia tudo para o GitHub e o site no ar atualiza em 1–2 minutos. Na primeira vez, o Windows pode pedir login no GitHub.
 
-- `cat`: `melee`, `spell`, `mine`, `projectile`, `minion`, `totem` ou `lab`
-- `video`: o ID do YouTube (o que vem depois de `watch?v=`) ou a URL completa
-- `pob`: link do PoB, ou `null` se ainda não existir
-- `br: true` mostra o selo **PT-BR** na capa
+**Atalho escondido:** com o editor rodando, abra o site (`http://localhost:8080`) e digite **`/edit`**.
 
-**Trocar a build do Mavado:** edite `poe1.mavadoBuild`.
+O editor só existe no seu computador: ele não é publicado e só aceita conexões da própria máquina.
 
-**Liberar PoE 2 ou HellClock:** hoje aparecem como “Em breve” (`status: "soon"` em `games`).
+### Como o conteúdo é organizado
+
+Cada **jogo** tem uma lista de **seções**. Cada seção é de um destes tipos:
+
+| Tipo | Para quê | Exemplo atual |
+|---|---|---|
+| **Builds** | Cards com capa do vídeo, PoB, criador e filtro por categoria | PoE 1 › Builds |
+| **Fases / estratégias** | Abas por fase, cada uma com estratégias | PoE 1 › Atlas |
+| **Links / cartões** | Links com imagem, em 3 estilos visuais | Utilitários, Genesis Tree, classes do D4 |
+| **Série de vídeos** | Aulas numeradas com checklist de progresso | PoE 1 › Craft |
+| **Destaque** | Chamada com botão e imagem grande | D4 › Runewords |
+
+Um jogo marcado como **Em breve** (ou sem seções) mostra a página “Em breve”. Os endereços das páginas seguem o padrão `#/<jogo>/<seção>`.
+
+O conteúdo fica em `assets/js/data.js`, no formato `window.MAVADO = { …JSON… }`. Também dá para editá-lo à mão.
 
 ## Rotas
 
@@ -56,16 +72,17 @@ Tudo fica em **`assets/js/data.js`**. Exemplos:
 | `#/d4` · `#/d4/builds` · `#/d4/runewords` | Diablo 4 |
 | `#/canal` | Sobre o Mavado: bio, setup, regras, contato e parceiros |
 | `#/poe2` · `#/hellclock` | Em breve |
+| `#/<jogo>/<seção>` | Qualquer jogo ou seção criados pelo editor |
 
 As rotas usam `#`, então funcionam em qualquer host sem configurar rewrites.
 
 ## Testando localmente
 
+Use o próprio editor (`editar-site.cmd`), que também serve o site em http://localhost:8080. Se preferir só ver o site:
+
 ```powershell
 python -m http.server 8080
 ```
-
-Depois abra http://localhost:8080. Abrir o `index.html` direto (file://) também funciona, mas o player da Twitch precisa de um servidor.
 
 ## Publicando
 
@@ -100,7 +117,7 @@ Importe o repositório em [vercel.com/new](https://vercel.com/new). Framework pr
 
 - Visual nas cores da live: verde tóxico + roxo neon, com logo, avatar, banner e painéis do canal
 - Ícones originais das categorias, Atlas, Genesis, ferramentas e classes do D4
-- Para trocar uma imagem, substitua o arquivo em `assets/img/` mantendo o nome (ou altere o caminho em `data.js`)
+- Editor visual local com prévia ao vivo, upload de imagens e botão de publicar
 - Busca global com **Ctrl+K** ou **/**: builds, criadores, ferramentas, vídeos e farms
 - Vídeos tocam num player dentro do site (youtube-nocookie)
 - Indicador **AO VIVO** da Twitch (via decapi.me) e player que só carrega quando você clica
