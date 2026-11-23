@@ -108,4 +108,4 @@ Importe o repositório em [vercel.com/new](https://vercel.com/new). Framework pr
 - Responsivo, navegável por teclado, respeita `prefers-reduced-motion`
 
 ---
-Conteúdo reunido de criadores da comunidade; os créditos ficam com cada autor. Site por [Pwnage](https://twitch.tv/pwnage_1).
+Conteúdo reunido de criadores da comunidade; os créditos ficam com cada autor. Site por NGL Tech Solutions.

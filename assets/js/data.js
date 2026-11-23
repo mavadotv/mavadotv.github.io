@@ -15,7 +15,7 @@ window.MAVADO = {
     subUrl: "https://www.twitch.tv/subs/mavado_tv",
     donateUrl: "https://livepix.gg/mavadotv",
     support: { label: "Apoie o criador do site", url: "https://livepix.gg/pwnage" },
-    credit: { label: "Pwnage", url: "https://twitch.tv/pwnage_1" },
+    credit: { label: "NGL Tech Solutions", url: null },
 
     img: {
       logo: "assets/img/brand/logo.webp",
