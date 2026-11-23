@@ -33,7 +33,7 @@ window.MAVADO = {
       "eyebrow": "Build do Mavado · PoE 1",
       "title": "Reap of Butchery",
       "subtitle": "Elementalist — a build que o seu streamer favorito está jogando agora.",
-      "url": "https://pobb.in/Gb7Q3LXSBXRg",
+      "url": "https://poe.ninja/poe1/profile/mavadotv-2391/covens/character/Mavado_Tv",
       "urlLabel": "Abrir PoB",
       "route": "poe1/builds"
     },
