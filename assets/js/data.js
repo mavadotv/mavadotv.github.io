@@ -904,6 +904,18 @@ window.MAVADO = {
                   "notes": "Compre Syndicate Medallion, abra no Map Device, corra o mapa e mate a Catarina. O objetivo é dropar a Cynderswallow Urn e vender como achar melhor — identificada ou não.",
                   "extraLabel": "",
                   "extraUrl": ""
+                },
+                {
+                  "title": "Ultimatum",
+                  "url": "https://www.youtube.com/watch?v=pLP77e44NaQ",
+                  "urlLabel": "Abrir",
+                  "map": "T16 Branco",
+                  "tags": [],
+                  "notes": "Farmzinho para aqueles que gostam de Ultimatum.",
+                  "creditName": "",
+                  "creditUrl": "",
+                  "extraLabel": "",
+                  "extraUrl": ""
                 }
               ]
             }
