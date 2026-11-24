@@ -879,15 +879,15 @@ window.MAVADO = {
                 },
                 {
                   "title": "Abyss + Legion",
-                  "url": "https://atlas-blush-beta.vercel.app/#oSC5qzXRl9qXPj1HFjXMXlx7befn7gd38Q79r_tPOk8wgA",
+                  "url": "https://atlas-blush-beta.vercel.app/#oYDbMbUrsNR9FE-llK38_fL_172_XjqLVffT3ju6chOC",
                   "urlLabel": "Abrir Atlas",
                   "creditName": "",
                   "creditUrl": "",
-                  "map": "Tier 16.5 com Rarity 100%+",
+                  "map": "Tier 16.5 com Currency 90%+",
                   "tags": [
                     "Legion Thread x8",
                     "Abyss Thread x8",
-                    "Bestiary Thread x8"
+                    "Breach Thread x8"
                   ],
                   "notes": "Aqui a coisa fica séria: mapa ultra difícil, mas pode ter certeza que divine vai ter!",
                   "extraLabel": "",
